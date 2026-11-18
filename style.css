@@ -1,0 +1,125 @@
+/* Базові стилі для чистоти демонстрації */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+section {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+h2 {
+  margin-top: 0;
+  color: #444;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 8px;
+}
+
+code {
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* 1. Селектор тега */
+main p {
+  color: #555;
+}
+
+/* 2. Селектор класу */
+.highlight-text {
+  color: #d9534f;
+  background-color: #fdf7f7;
+  padding: 10px;
+  border-left: 4px solid #d9534f;
+}
+
+/* 3. Селектор атрибута */
+a[href^="https"] {
+  color: #008080;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a[href^="https"]:hover {
+  text-decoration: underline;
+}
+
+/* 4. Дочірній селектор (лише прямі li першого рівня) */
+.parent-list > li {
+  border: 2px dashed #3498db;
+  padding: 10px;
+  list-style-type: square;
+}
+
+/* 5. Псевдоклас :nth-child (стилізація парних рядків) */
+.styled-list li:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* 6. Стан фокусу (:focus) та :hover */
+.action-btn {
+  padding: 10px 20px;
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none; /* Прибираємо дефолтний аутлайн для створення кастомного */
+}
+
+.action-btn:hover {
+  background-color: #27ae60;
+}
+
+/* Видимий та акцентний стан фокусу */
+.action-btn:focus {
+  outline: 3px solid #e74c3c;
+  outline-offset: 2px;
+  box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
+}
+
+/* ==========================================================================
+   КОНФЛІКТИ СТИЛІВ ТА СПЕЦИФІЧНІСТЬ
+   ========================================================================== */
+
+/* Конфлікт №1: Селектор класу проти Селектора тега */
+.text-blue {
+  color: #2980b9; /* Кортеж специфічності: (0, 1, 0) — ПЕРЕМОЖЕЦЬ */
+}
+
+#conflict-one {
+  /* Цей ID використовується суто для ізоляції тесту у розмітці, 
+     селектор тега нижче конкурує з класом .text-blue */
+}
+
+main section p {
+  color: #c0392b; /* Кортеж специфічності: (0, 0, 3) — Програє класу */
+}
+
+
+/* Конфлікт №2: Селектор ID проти комбінації Класу та Тегів */
+#unique-box {
+  background-color: #f1c40f; /* Кортеж специфічності: (1, 0, 0) — ПЕРЕМОЖЕЦЬ */
+  padding: 15px;
+}
+
+main p.box-style {
+  background-color: #9b59b6; /* Кортеж специфічності: (0, 1, 2) — Програє ID */
+  color: #fff;
+}
